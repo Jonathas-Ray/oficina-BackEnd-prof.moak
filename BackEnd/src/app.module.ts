@@ -1,22 +1,26 @@
 import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TasksModule } from './modules/tasks/tasks.module';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { MongooseModule } from '@nestjs/mongoose';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: '../.env', // caminho relativo para a pasta BackEnd
-      isGlobal: true,
-    }),
+    ConfigModule.forRoot({ isGlobal: true }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        uri: configService.get<string>('DB_SERVER_PORT'),
-      }),
+      useFactory: (configService: ConfigService) => {
+        const user = configService.get<string>('MONGO_USER');
+        const password = configService.get<string>('MONGO_PASSWORD');
+        const dbName = configService.get<string>('MONGO_DB_NAME');
+        const host = 'mongodb';  // nome do serviço no docker-compose
+        const port = configService.get<string>('MONGO_CONTAINER_PORT') || '27017';
+        const uri = `mongodb://${user}:${password}@${host}:${port}/${dbName}?authSource=admin`;
+        console.log('Conectando ao MongoDB local:', uri.replace(/:.+@/, ':****@')); // oculta senha
+        return { uri };
+      },
     }),
     TasksModule,
   ],
