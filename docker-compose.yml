@@ -1,0 +1,27 @@
+ # ── MongoDB ──────────────────────────────────────────────────────
+mongodb:
+  image: mongo:7
+  container_name: mongodb
+  restart: always
+  env_file:
+    - .env
+  environment:
+    MONGO_INITDB_DATABASE: ${DB_NAME}
+    MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+    MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+  ports:
+    - "${DB_SERVER_PORT:-27017}:27017"
+  volumes:
+    - mongoDB_data:/data/db
+  healthcheck:
+    test: ["CMD", "mongosh", "--eval", "db.adminCommand('ping')"]
+    interval: 10s
+    timeout: 5s
+    retries: 5
+    start_period: 30s
+
+#FrontEnd
+
+
+
+#BackEnd

@@ -1,0 +1,137 @@
+# ============================================================
+# SEGREDOS E CREDENCIAIS — NUNCA VERSIONAR
+# ============================================================
+.env
+.env.*
+!env.example
+!env.*.example
+
+# Firebase / Google credentials
+firebase-service-account.json
+*-service-account.json
+google-credentials.json
+*.json.key
+*.pem
+*.p12
+*.pfx
+*.key
+*.keystore
+service_account*.json
+
+# ============================================================
+# DEPENDÊNCIAS
+# ============================================================
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ============================================================
+# BUILD / DIST — NEST + NODE
+# ============================================================
+dist/
+build/
+out/
+
+# ============================================================
+# NESTJS
+# ============================================================
+.nest/
+
+# ============================================================
+# MONGODB / DATA LOCAL
+# ============================================================
+data/db/
+*.dump
+dump/
+
+# ============================================================
+# DOCKER
+# ============================================================
+.docker/
+docker-compose.override.yml
+
+# ============================================================
+# FRONTEND — REACT
+# Descomente se usar React
+# ============================================================
+# .next/
+# .react/
+# public/hot-update.*
+
+# ============================================================
+# FRONTEND — VUE
+# Descomente se usar Vue
+# ============================================================
+# .nuxt/
+# .output/
+# .vuepress/dist/
+# .cache/
+
+# ============================================================
+# FRONTEND — ANGULAR
+# Descomente se usar Angular
+# ============================================================
+# .angular/
+# .angular/cache/
+# e2e/
+# karma.conf.js
+
+# ============================================================
+# LOGS
+# ============================================================
+*.log
+logs/
+log/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ============================================================
+# EDITORES E IDEs
+# ============================================================
+.idea/
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.iws
+*.iml
+*.ipr
+
+# ============================================================
+# SISTEMA OPERACIONAL
+# ============================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*~
+
+# ============================================================
+# FERRAMENTAS DE DESENVOLVIMENTO
+# ============================================================
+.claude/
+
+# ============================================================
+# MISC
+# ============================================================
+*.tmp
+*.bak
+*.zip
+*.tar.gz
+*.rar
